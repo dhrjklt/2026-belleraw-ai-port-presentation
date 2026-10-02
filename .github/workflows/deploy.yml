@@ -1,0 +1,56 @@
+# GitHub Pages deploy for a Slidev deck.
+#
+# GitHub Pages project sites are served under a subpath:
+#   https://dhrjklt.github.io/2026-belleraw-ai-port-presentation/
+# so assets must be built with --base set to the repo name.
+#
+# Optional PDF/download button: add --download to the build command
+# (requires chromium; makes the job much heavier).
+
+name: Deploy Slidev to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npx slidev build --base "/2026-belleraw-ai-port-presentation/"
+
+      # SPA fallback so direct links to e.g. /5 don't 404
+      - run: cp dist/index.html dist/404.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
