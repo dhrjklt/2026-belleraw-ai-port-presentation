@@ -1,0 +1,43 @@
+# GitLab Pages deploy for a Slidev deck.
+#
+# DESY GitLab Pages uses "unique domains": the site is served at its own
+# subdomain root, e.g. https://<project>-<hash>.pages.desy.de/
+# so assets must be built with --base "/".
+#
+# Optional PDF/download button: switch the build command to
+#   npx slidev build --download --base "/"
+# but note that --download requires chromium and makes the job much heavier.
+
+image: node:20
+
+stages:
+  - build
+  - pages
+
+build:
+  stage: build
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+  script:
+    - npm ci
+    - npx slidev build --base "/"
+  artifacts:
+    paths:
+      - dist/
+
+pages:
+  stage: pages
+  needs:
+    - build
+  script:
+    - mkdir -p public
+    - cp -r dist/. public/
+  artifacts:
+    paths:
+      - public/
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

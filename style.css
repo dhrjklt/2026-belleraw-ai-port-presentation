@@ -1,0 +1,158 @@
+/* DiracX logo font: Montserrat (matching the official branding) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+
+/* DiracX custom color scheme */
+:root {
+  --diracx-primary: #00afca;
+  --diracx-secondary: #77b52c;
+  --diracx-dark: #4e5558;
+  --diracx-darker: #404040;
+  --slidev-font-sans: 'Roboto', sans-serif;
+  --slidev-font-mono: 'Roboto Mono', monospace;
+  --diracx-font-logo: 'Montserrat', sans-serif;
+}
+
+/* Apply Roboto to all body text */
+.slidev-layout {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Apply Montserrat to headings for logo-like feel */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Neversink string styling with Montserrat */
+.ns-string {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+.neversink-diracx-scheme,
+.ns-c-dx-scheme {
+  --neversink-bg-color: #0f1a1e;
+  --neversink-bg-code-color: #1a2a2e;
+  --neversink-fg-code-color: #e0e0e0;
+  --neversink-fg-color: #e0e0e0;
+  --neversink-text-color: #e0e0e0;
+  --neversink-border-color: #00afca;
+  --neversink-highlight-color: #00afca;
+  --neversink-admon-bg-color: #0f1a1e;
+  --neversink-admon-border-color: #00afca;
+  --neversink-admon-text-color: #e0e0e0;
+}
+
+.neversink-diracx-light-scheme,
+.ns-c-dx-lt-scheme {
+  --neversink-bg-color: #f5f9fa;
+  --neversink-bg-code-color: #e0eef0;
+  --neversink-fg-code-color: #4e5558;
+  --neversink-fg-color: #4e5558;
+  --neversink-text-color: #4e5558;
+  --neversink-border-color: #00afca;
+  --neversink-highlight-color: #00afca;
+  --neversink-admon-bg-color: #f5f9fa;
+  --neversink-admon-border-color: #00afca;
+  --neversink-admon-text-color: #4e5558;
+}
+
+.neversink-diracx-green-scheme,
+.ns-c-dx-gr-scheme {
+  --neversink-bg-color: #1a2420;
+  --neversink-bg-code-color: #24332a;
+  --neversink-fg-code-color: #e0e0e0;
+  --neversink-fg-color: #e0e0e0;
+  --neversink-text-color: #e0e0e0;
+  --neversink-border-color: #77b52c;
+  --neversink-highlight-color: #77b52c;
+  --neversink-admon-bg-color: #1a2420;
+  --neversink-admon-border-color: #77b52c;
+  --neversink-admon-text-color: #e0e0e0;
+}
+
+.neversink-diracx-green-light-scheme,
+.ns-c-dx-gr-lt-scheme {
+  --neversink-bg-color: #f6faf2;
+  --neversink-bg-code-color: #e4f0d8;
+  --neversink-fg-code-color: #77b52c;
+  --neversink-fg-color: #4e5558;
+  --neversink-text-color: #4e5558;
+  --neversink-border-color: #77b52c;
+  --neversink-highlight-color: #77b52c;
+  --neversink-admon-bg-color: #f6faf2;
+  --neversink-admon-border-color: #77b52c;
+  --neversink-admon-text-color: #4e5558;
+}
+
+/* DiracX branding accents */
+.diracx-accent {
+  color: var(--diracx-primary);
+}
+
+.diracx-green-accent {
+  color: var(--diracx-secondary);
+}
+
+/* Custom gradient backgrounds for section slides */
+.bg-diracx-gradient {
+  background: linear-gradient(135deg, #0f1a1e 0%, #1a2a30 50%, #0f1a1e 100%);
+}
+
+/* Logo styling */
+.diracx-logo {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Override highlight color for better DiracX branding */
+.slidev-layout {
+  --slidev-highlight: var(--diracx-primary);
+}
+
+/* Section slide styling */
+.section-diracx {
+  background: linear-gradient(135deg, #00afca 0%, #008fa6 100%);
+  color: white;
+}
+
+/* Mermaid diagram overrides for DiracX colors */
+.mermaid .node rect {
+  stroke-width: 2px;
+}
+
+/* Compact the top-title content area so dense slides keep their bottom
+   notes and mermaid diagrams on-canvas (neversink's defaults overflow the
+   980x552 slide for tables/bullets + a footer note). */
+.slidev-layout.toptitle.content {
+  padding-top: 0.5rem;
+}
+
+.slidev-layout.toptitle.content p {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+.slidev-layout.toptitle.content ul {
+  margin-top: 0.4em;
+}
+
+.slidev-layout.toptitle.content li {
+  margin-bottom: 0.35em;
+  line-height: 1.35em;
+}
+
+.slidev-layout.toptitle.content table {
+  font-size: 0.85em;
+  margin: 0.3em 0;
+}
+
+.slidev-layout.toptitle.content table th,
+.slidev-layout.toptitle.content table td {
+  padding: 0.12em 0.6em;
+}
+
+.slidev-layout.toptitle.content .mermaid {
+  margin: 0.1em 0;
+}
