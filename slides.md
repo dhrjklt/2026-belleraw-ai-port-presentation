@@ -374,7 +374,7 @@ flowchart LR
         GW["LiteLLM gateway<br/>b2_coding_auto"] --> AR["AutoRouter<br/>classify → route"]
         GW -. langfuse traces .-> TR["evaluations · cost · latency · cache hits"]
     end
-    OR["OpenRouter<br/>local-kek/Qwen3.8-27b · GLM5.3-flash · DeepSeekV4.1-flash<br/>Grok-4.7 · prompt cache"]
+    OR["<br/>local-kek/Qwen3.8-27b · GLM5.3-flash · DeepSeekV4.1-flash<br/>Grok-4.7 · prompt cache"]
     OC <--> MP
     OC -->|LLM call| GW
     AR -->|tier-routed| OR
