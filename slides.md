@@ -324,14 +324,14 @@ title: llm-side
 
 :: content ::
 
-An LLM-as-classifier (`GLM5.3-flash`) labels each task, then the **LiteLLM
+An LLM-as-classifier (`Decider V1.1 27B`) labels each task, then the **LiteLLM
 gateway's AutoRouter** sends it to the cheapest model that can do the job:
 
 | Task tier | Model |
 |-----------|-------|
-| simple | `GLM5.3-flash` |
+| simple | `local-kek/Qwen3.8-27b` |
 | medium | `DeepSeekV4.1-flash` |
-| complex | `DeepSeekV4.1-flash` · reasoning effort: high |
+| complex | `GLM5.3-flash` · reasoning effort: high |
 | reasoning | `Grok-4.7` |
 
 - **~$9.50 total** for the whole port — multiple sessions across one week.
@@ -372,9 +372,9 @@ flowchart LR
         direction TB
         MP["MCP · mempalace<br/>postgres + pgvector · qwen0.6-embedder"]
         GW["LiteLLM gateway<br/>b2_coding_auto"] --> AR["AutoRouter<br/>classify → route"]
-        GW -. traces .-> TR["cost · latency · cache hits"]
+        GW -. langfuse traces .-> TR["evaluations · cost · latency · cache hits"]
     end
-    OR["OpenRouter<br/>GLM5.3-flash · DeepSeekV4.1-flash<br/>Grok-4.7 · prompt cache"]
+    OR["OpenRouter<br/>local-kek/Qwen3.8-27b · GLM5.3-flash · DeepSeekV4.1-flash<br/>Grok-4.7 · prompt cache"]
     OC <--> MP
     OC -->|LLM call| GW
     AR -->|tier-routed| OR
